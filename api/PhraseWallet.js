@@ -9,6 +9,7 @@ import utils from './deps/utils.js'
 
 import BitcoinHDWallet from './bitcoin/BitcoinHDWallet.js';
 import LitecoinHDWallet from './bitcoin/LitecoinHDWallet.js';
+import TegacoinHDWallet from './bitcoin/TegacoinHDWallet.js';
 
 import { generateSaveWalletData } from './storeWallet.js'
 
@@ -103,10 +104,15 @@ export default class PhraseWallet {
         const ltcSeed = [...addrSeed];
         const ltcWallet = new LitecoinHDWallet().createWallet(new Uint8Array(ltcSeed));
 
+        // Create Tegacoin HD Wallet 
+        const tegaSeed = [...addrSeed];
+        const tegaWallet = new TegacoinHDWallet().createWallet(new Uint8Array(tegaSeed));
+
         this._addresses[nonce] = {
             address,
             btcWallet,
             ltcWallet,
+            tegaWallet,
             qoraAddress,
             keyPair: {
                 publicKey: addrKeyPair.publicKey,
